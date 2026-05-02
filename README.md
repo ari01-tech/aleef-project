@@ -10,3 +10,5 @@ npm run dev
 cd server
 npm install
 npm start
+
+
