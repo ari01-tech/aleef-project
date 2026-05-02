@@ -5,23 +5,25 @@ import mongoose from "mongoose";
 import LostPetModel from "./Models/LostPetModel.js";
 import PetModel from "./Models/PetModel.js";
 import UserModel from "./Models/UserModel.js";
-const app = express();
+import dotenv from "dotenv";
 
+dotenv.config(); // load .env variables
+
+const app = express();
 app.use(express.json());
 app.use(cors());
 
-const connectString =
-  "mongodb+srv://ariam:1234@aleefcluster.pbik5nl.mongodb.net/aleefDb?retryWrites=true&w=majority&appName=aleefCluster";
+// Use environment variable if set, otherwise default to local Docker Mongo
+const connectString = process.env.MONGO_URI || "mongodb://mongo:27017/aleefdb";
 
 mongoose
-  .connect(connectString)
-  .then(() => console.log("MongoDB connected"))
-  .catch((error) => console.log("MongoDB connection error:", error));
+  .connect(connectString, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((error) => console.log("❌ MongoDB connection error:", error));
 
-app.listen(3001, () => {
-  console.log("Server is running on port 3001");
+app.listen(process.env.PORT || 3001, () => {
+  console.log(`🚀 Server is running on port ${process.env.PORT || 3001}`);
 });
-
 
 app.post("/registerUser", async (req, res) => {
   try {
