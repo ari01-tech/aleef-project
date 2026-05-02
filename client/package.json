@@ -23,13 +23,11 @@
     "yup": "^1.7.1"
   },
   "scripts": {
-    "dev": "vite",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "vitest run",
-    "test:ui": "vitest --ui",
-    "preview": "vite preview",
-    "eject": "react-scripts eject"
+     "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "test": "vitest run",
+  "test:ui": "vitest --ui"
   },
   "eslintConfig": {
     "extends": [
